@@ -1,0 +1,94 @@
+.TH ZIRO-DEFER 1 "2026-10-18" "ziro-defer 2.0.0" "User Commands"
+.SH NAME
+ziro-defer \- multi-stage runtime task scheduler for Zsh
+.SH SYNOPSIS
+.B ziro-defer
+[\fIOPTIONS\fR] \fICOMMAND\fR [\fIARGS\fR...]
+.SH DESCRIPTION
+.B ziro-defer
+schedules shell tasks across 8 deterministic stages with 4 priority slots,
+dependency graphs, conditional execution, and JSONL telemetry.
+Hot-path stages (0-4) run with zero subprocess forks; cumulative budget is 4.6ms.
+.PP
+Legacy
+.B zsh-defer
+syntax is preserved as an alias that maps to
+.B ziro-defer --stage=5 --slot=b
+.
+.SH OPTIONS
+.TP
+.B --stage=\fI0-7\fR
+Execution stage (default: 5)
+.TP
+.B --slot=\fIa|b|c|d\fR
+Priority slot (default: b)
+.TP
+.B --name=\fIid\fR
+Unique task identifier for dependency tracking
+.TP
+.B --after=\fIid\fR
+Hold execution until target task completes
+.TP
+.B --before=\fIid\fR
+Block target task until this one completes
+.TP
+.B --depends=\fIids\fR
+Space-separated list of task IDs this task depends on. Alias for
+.BR --after ,
+added in v2.0.0. Equivalent to
+.BR --after=\fIids\fR .
+.TP
+.B --on-key=\fIkey\fR
+Bind to a ZLE key (one-shot)
+.TP
+.B --if-var=\fIname\fR
+Execute only if environment variable is set
+.TP
+.B --if-cmd=\fIname\fR
+Execute only if command exists in PATH
+.TP
+.B --if-ssh
+Execute only in SSH sessions
+.TP
+.B --if-not-root
+Execute only if EUID != 0
+.TP
+.B --if-dir=\fIpath\fR
+Execute only if directory exists
+.TP
+.B --timeout=\fIms\fR
+Task timeout (default: 5000)
+.TP
+.B --measure
+Force metrics recording
+.TP
+.B --quiet
+Suppress diagnostic output
+.SH SUBCOMMANDS
+.TP
+.B ziro-defer-batch [OPTIONS] \fIplugins...\fR
+Batch registration for multiple plugins
+.TP
+.B ziro-defer-dispatch [--force] \fI0-7\fR
+Synchronously execute all queued tasks in a stage
+.TP
+.B ziro-defer-bind-widget \fIkey\fR \fIcmd\fR
+Register a one-shot ZLE widget
+.TP
+.B ziro-defer-reorder --task=\fIid\fR --slot=\fIslot\fR
+Change a pending task's priority slot
+.TP
+.B ziro-defer-stats [pattern]
+Report aggregate metrics from metrics.jsonl
+.SH FILES
+.TP
+.I ~/.config/ziro/defer.conf
+User configuration (TOML)
+.TP
+.I ~/.cache/ziro/defer/metrics.jsonl
+JSONL metrics log
+.SH SEE ALSO
+.BR zsh (1),
+.BR zsh-defer (1)
+.SH BUGS
+Report bugs to https://github.com/Pakrohk/ziro-defer/issues

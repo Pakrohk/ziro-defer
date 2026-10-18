@@ -1,0 +1,26 @@
+[plugin]
+name = "ziro-defer"
+version = "2.0.0"
+description = "Multi-stage runtime task scheduler for Zsh"
+authors = ["Pakrohk"]
+license = "MIT"
+repository = "https://github.com/Pakrohk/ziro-defer"
+
+[plugin.compat]
+ziro = ">=1.3.0"
+zsh = ">=5.8"
+os = ["linux", "macos", "wsl"]
+
+[load]
+main = "ziro-defer.plugin.zsh"
+
+[[load.stages]]
+id = 1
+name = "bootstrap"
+trigger = "startup"
+budget_ms = 0.5
+files = ["ziro-defer.plugin.zsh"]
+
+[provides]
+commands = ["ziro-defer", "ziro-defer-batch", "ziro-defer-dispatch", "ziro-defer-bind-widget", "ziro-defer-stats", "ziro-defer-reorder"]
+capabilities = ["task-scheduling", "multi-stage-init", "metrics-telemetry"]

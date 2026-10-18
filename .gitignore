@@ -1,0 +1,24 @@
+# Ziro-Defer v2.0.0 .gitignore
+# Local specs and decisions (gitignored per ecosystem design)
+.specify/
+
+# Cache and temp artifacts
+.cache/
+*.zwc
+*.zwc.old
+*.tmp
+*.log
+
+# Test artifacts
+/tmp/
+tests/.output/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
