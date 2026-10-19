@@ -34,7 +34,7 @@ ziro-defer 'source ~/.my-plugin.zsh'
 ziro-defer --stage=5 --slot=a --name=ghost 'znap source Pakrohk/ziro-ghost'
 
 # Chain with dependency
-ziro-defer --stage=5 --slot=b --name=fsh --after=ghost 'znap source zdharma/fsh'
+ziro-defer --stage=5 --slot=b --name=fsh --after=ghost 'znap source zdharma-continuum/fast-syntax-highlighting'
 
 # Conditional
 ziro-defer --stage=6 --slot=d --if-cmd=git --name=check 'git fetch --quiet'

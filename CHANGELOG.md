@@ -5,6 +5,16 @@ All notable changes to `ziro-defer` are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/).
 
+## [2.0.1] — 2026-10-18
+
+### Fixed
+
+- **Documentation**: Corrected archived repository reference (`zdharma`) → `zdharma-continuum/fast-syntax-highlighting` in `docs/INTEGRATION.md` and `README.md`. The `zdharma` account is archived; `zdharma-continuum` is the maintained fork. `--name=fsh` (task name) remains as-is (not a repo slug).
+
+### Changed
+
+- None. No code or behavior changes. Only documentation.
+
 ## [2.0.0] — 2026-10-18
 
 ### Added

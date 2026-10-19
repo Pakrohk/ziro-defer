@@ -26,7 +26,7 @@ ziro-defer-dispatch 4
 
 # Prompt rendered — user sees interactive shell
 ziro-defer --stage=5 --slot=a --name=ghost znap source Pakrohk/ziro-ghost
-ziro-defer --stage=5 --slot=b --name=fsh --after=ghost znap source zdharma/fsh
+ziro-defer --stage=5 --slot=b --name=fsh --after=ghost 'znap source zdharma-continuum/fast-syntax-highlighting'
 ziro-defer --stage=6 --slot=d --name=update _ziro_update_check_background
 ```
 
@@ -60,7 +60,7 @@ When generating `plugins.gen.zsh` from the analyzer, express dependencies as a c
 # Analyzer output (example)
 ziro-defer --stage=5 --slot=a --name=ghost  'znap source Pakrohk/ziro-ghost'
 ziro-defer --stage=5 --slot=b --name=zcolors 'znap eval zcolors "zcolors ${(q)LS_COLORS}"'
-ziro-defer --stage=5 --slot=b --name=fsh --depends='ghost zcolors' 'znap source zdharma/fsh'
+ziro-defer --stage=5 --slot=b --name=fsh --depends='ghost zcolors' 'znap source zdharma-continuum/fast-syntax-highlighting'
 ```
 
 `fsh` will not run until both `ghost` and `zcolors` reach terminal state.
